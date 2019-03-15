@@ -7,6 +7,9 @@ import logging
 
 driver = webdriver.Chrome()
 driver.get("http://localhost/login/")
+
+driver.save_screenshot("log/loginindo.png")
+
 assert "Login" in driver.title
 elem = driver.find_element_by_xpath("//input[@placeholder='Username']").send_keys("maulana_versatech")
 elem = driver.find_element_by_xpath("//input[@placeholder='Password']").send_keys("Csatversa123")
@@ -14,15 +17,25 @@ elem = driver.find_element_by_xpath("//button[contains(text(), 'Login')]").click
 
 time.sleep(10)
 
+fo = open('log/loginindo.html', 'w')
+fo.write(driver.page_source)
+fo.close()
+
 elem = driver.find_element_by_xpath("//span/a[@title='Collapse Menu']").click()
 time.sleep(5)
 
 elem = driver.find_element_by_xpath("//span/a[@title='Collapse Menu']").click()
 time.sleep(5)
+
+driver.save_screenshot("log/logout.png")
 
 elem = driver.find_element_by_id("logout").click()
 
 time.sleep(5)
+
+fo = open('log/logout.html', 'w')
+fo.write(driver.page_source)
+fo.close()
 
 #assert "No results found." not in driver.page_source
 driver.close()
