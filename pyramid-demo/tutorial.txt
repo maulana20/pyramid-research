@@ -1,0 +1,6 @@
+venv : python -m venv env
+venv : env\Scripts\activate
+
+install
+pip : python get-pip.py
+mysql : pip install mysqlclient

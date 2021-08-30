@@ -1,0 +1,25 @@
+<div metal:use-macro="load: pyramid_demo:templates/components/layout.pt">
+    <div metal:fill-slot="content">
+        <div class="container">
+            <div style="float: right!important; margin: 10px;"><a href="/sample/link.html" class="btn btn-primary" tal:attributes="href request.route_url('product_add')">tambah</a></div>
+            <table class="table table-bordered table-content" id="table">
+                <thead>
+                    <tr>
+                        <td>No</td>
+                        <td>Name</td>
+                        <td>Category</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr tal:repeat="item products">
+                        <td tal:content="repeat.item.number">1</td>
+                        <td tal:content="item.name">item name</td>
+                        <td tal:content="category(item.category).name">FOOD</td>
+                        <td><a href="/sample/link.html" class="btn btn-warning" tal:attributes="href request.route_url('product_edit', id=item.id)">edit</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
