@@ -1,0 +1,19 @@
+version: '3.7'
+
+networks:
+  default:
+    driver: bridge
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: sms-gateway/api:local
+    volumes:
+      - .:/app
+    env_file: ./.env
+    ports:
+      - 8000:8000
+    networks:
+      - default
