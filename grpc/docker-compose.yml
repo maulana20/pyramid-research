@@ -1,0 +1,21 @@
+version: '3.7'
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  data-volume:
+    driver: local
+
+services:
+  grpc:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: python-grpc/grpc:local
+    volumes:
+      - ./:/app
+    restart: unless-stopped
+    networks:
+      - app-network
